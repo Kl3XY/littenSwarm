@@ -58,6 +58,7 @@ import { CommonModule } from '@angular/common';
       image-rendering: crisp-edges;
       transition: left 0.1s linear;
       transform-origin: center center;
+      z-index: 2;
     }
 
     .shadow {
@@ -67,6 +68,7 @@ import { CommonModule } from '@angular/common';
       transition: left 0.1s linear;
       opacity: 0.5;
       mix-blend-mode: multiply;
+      z-index: 1;
     }
 
     .shiny {
@@ -226,6 +228,6 @@ export class AppComponent implements OnInit {
         lastFlipTime: 0,
         direction
       });
-    }, 500); // Spawn a litten every 0.5 seconds
+    }, 200); // Spawn a litten every 0.2 seconds (increased from 0.5)
   }
 }
