@@ -2,16 +2,11 @@ module.exports = function(config) {
   config.set({
     // other Karma config options here, e.g. frameworks, files, etc.
 
-    browsers: ['CustomChrome'],
-
+    browsers: ['ChromeHeadlessNoSandbox'],
     customLaunchers: {
-      CustomChrome: {
-        base: 'Chrome',
-        flags: [
-          '--disable-web-security',
-          '--disable-gpu',
-          '--no-sandbox'
-        ]
+      ChromeHeadlessNoSandbox: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
       }
     },
 
