@@ -2,7 +2,7 @@ module.exports = function(config) {
   config.set({
     // other Karma config options here, e.g. frameworks, files, etc.
 
-    browsers: ['ChromeHeadlessNoSandbox'],
+    browsers: ['PhantomJS','Chrome', 'ChromeHeadless'],
     customLaunchers: {
       ChromeHeadlessNoSandbox: {
         base: 'ChromeHeadless',
