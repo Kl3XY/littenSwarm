@@ -85,6 +85,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent implements OnInit {
   @ViewChild('littenImg', { static: false }) littenImg!: ElementRef;
+  title = 'littenSwarm';
   littens: { 
     id: number; 
     top: number; 
