@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/styles.scss"],
-  "sourcesContent": ["/* You can add global styles to this file, and also import other style files */\r\n\r\n* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n}\r\n\r\nhtml, body {\r\n  width: 100%;\r\n  height: 100%;\r\n  overflow: hidden;\r\n}\r\n"],
-  "mappings": ";AAEA;AACE,UAAA;AACA,WAAA;AACA,cAAA;;AAGF;AAAA;AACE,SAAA;AACA,UAAA;AACA,YAAA;;",
-  "names": []
-}
