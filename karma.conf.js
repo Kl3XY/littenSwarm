@@ -1,20 +1,38 @@
-module.exports = function(config) {
+// Karma configuration file, see link for more information
+// https://karma-runner.github.io/1.0/config/configuration-file.html
+
+module.exports = function (config) {
   config.set({
-    // other Karma config options here, e.g. frameworks, files, etc.
-
-    browsers: ['PhantomJS','Chrome', 'ChromeHeadless'],
-    customLaunchers: {
-      ChromeHeadlessNoSandbox: {
-        base: 'ChromeHeadless',
-        flags: ['--no-sandbox']
-      }
+    basePath: '',
+    frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    plugins: [
+      require('karma-jasmine'),
+      require('karma-chrome-launcher'),
+      require('karma-jasmine-html-reporter'),
+      require('karma-coverage'),
+      require('@angular-devkit/build-angular/plugins/karma')
+    ],
+    client: {
+      jasmine: {
+        // you can add configuration options for Jasmine here
+        // the possible options are listed at https://jasmine.github.io/api/edge/Configuration.html
+        // for example, you can disable the random execution with `random: false`
+        // or set a specific seed with `seed: 4321`
+      },
     },
-
-    // Timeout settings (adjust as needed)
-    browserDisconnectTimeout: 10000,    // default 2000 ms
-    browserDisconnectTolerance: 3,      // default 0
-    browserNoActivityTimeout: 60000,    // default 10000 ms
-
-    // other config...
+    jasmineHtmlReporter: {
+      suppressAll: true // removes the duplicated traces
+    },
+    coverageReporter: {
+      dir: require('path').join(__dirname, './coverage/litten-swarm'),
+      subdir: '.',
+      reporters: [
+        { type: 'html' },
+        { type: 'text-summary' }
+      ]
+    },
+    reporters: ['progress', 'kjhtml'],
+    browsers: ['Chrome'],
+    restartOnFileChange: true
   });
 };
