@@ -11,18 +11,21 @@ import { CommonModule } from '@angular/common';
         <div class="litten-container" [style.z-index]="litten.depth">
           <img 
             #littenImg
-            [src]="litten.isShiny ? '/assets/ShinyLitten.png' : '/assets/Litten.png'"
+            [src]="litten.isGroudon ? (litten.isShiny ? '/assets/shinygroudon.gif' : '/assets/groudon.gif') : (litten.isShiny ? '/assets/ShinyLitten.png' : '/assets/Litten.png')"
             [style.top.px]="litten.top + litten.verticalOffset"
             [style.left.px]="litten.left"
             [style.transform]="'rotate(' + litten.rotation + 'deg) scaleX(' + (litten.isFlipped ? -1 : 1) + ')'"
+            [style.width.px]="litten.isGroudon ? 300 : 150"
             class="litten"
             [class.shiny]="litten.isShiny"
+            [class.groudon]="litten.isGroudon"
             alt="Litten"
           />
           <img 
             src="/assets/littenShadow.png"
             [style.top.px]="litten.top + 40"
             [style.left.px]="litten.left + 20"
+            [style.width.px]="litten.isGroudon ? 200 : 100"
             class="shadow"
             alt="Shadow"
           />
@@ -74,6 +77,10 @@ import { CommonModule } from '@angular/common';
     .shiny {
       filter: brightness(1.2) contrast(1.2);
     }
+
+    .groudon {
+      filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.5));
+    }
   `]
 })
 export class AppComponent implements OnInit {
@@ -83,6 +90,7 @@ export class AppComponent implements OnInit {
     top: number; 
     left: number; 
     isShiny: boolean; 
+    isGroudon: boolean;
     speed: number; 
     verticalOffset: number;
     rotation: number;
@@ -203,24 +211,36 @@ export class AppComponent implements OnInit {
 
   private startLittenSpawn() {
     setInterval(() => {
+      const isGroudon = Math.random() < 1/4096; // 1/4096 chance for Groudon
       const isShiny = Math.random() < 1/683; // Masuda Method odds
-      const speed = 2 + Math.random(); // Random speed between 2 and 3
+      const speed = isGroudon ? 1.5 : (2 + Math.random()); // Groudon moves slower
       const frequency = 0.02 + Math.random() * 0.03; // Random frequency for different wave patterns
-      const top = Math.random() * (window.innerHeight - 150) + 10; // Add 10px to base position
-      const direction = Math.random() < 0.5 ? 'left' : 'right'; // Random direction
+      
+      // Calculate spawn position
+      let top;
+      if (isGroudon) {
+        // Groudon spawns in lower half of screen
+        const lowerHalf = window.innerHeight / 2;
+        top = lowerHalf + Math.random() * (window.innerHeight - lowerHalf - (isGroudon ? 300 : 150));
+      } else {
+        top = Math.random() * (window.innerHeight - 150) + 10;
+      }
+      
+      const direction = Math.random() < 0.5 ? 'left' : 'right';
       
       this.littens.push({
         id: this.littenCount++,
         top,
         left: direction === 'left' ? window.innerWidth : -150,
         isShiny,
+        isGroudon,
         speed,
         verticalOffset: 0,
         rotation: 0,
         phase: Math.random() * Math.PI * 2, // Random starting phase
         frequency,
         lastBump: performance.now(),
-        depth: Math.floor(top), // Simpler depth calculation
+        depth: Math.floor(top + (isGroudon ? 150 : 0)), // Add extra depth for Groudon to ensure it's behind smaller Littens
         isPaused: false,
         pauseEndTime: 0,
         isFlipped: direction === 'right', // Flip the sprite based on direction
@@ -228,6 +248,6 @@ export class AppComponent implements OnInit {
         lastFlipTime: 0,
         direction
       });
-    }, 200); // Spawn a litten every 0.2 seconds (increased from 0.5)
+    }, 200); // Spawn a litten every 0.2 seconds
   }
 }
