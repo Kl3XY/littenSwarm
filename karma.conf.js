@@ -1,18 +1,25 @@
 module.exports = function(config) {
   config.set({
-    // ... keep your existing config here ...
+    // other Karma config options here, e.g. frameworks, files, etc.
 
-    browsers: ['ChromeHeadlessNoSandbox'],
+    browsers: ['CustomChrome'],
 
     customLaunchers: {
-      ChromeHeadlessNoSandbox: {
-        base: 'ChromeHeadless',
-        flags: ['--no-sandbox', '--disable-setuid-sandbox']
+      CustomChrome: {
+        base: 'Chrome',
+        flags: [
+          '--disable-web-security',
+          '--disable-gpu',
+          '--no-sandbox'
+        ]
       }
     },
 
-    singleRun: true,  // optional, good for CI
+    // Timeout settings (adjust as needed)
+    browserDisconnectTimeout: 10000,    // default 2000 ms
+    browserDisconnectTolerance: 3,      // default 0
+    browserNoActivityTimeout: 60000,    // default 10000 ms
 
-    // other configs ...
+    // other config...
   });
 };
