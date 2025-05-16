@@ -11364,7 +11364,7 @@ var yE = ["littenImg"],
 function wE(e, t) {
     if (e & 1 && (Ln(0, "div", 3), Vn(1, "img", 4, 0)(3, "img", 5), jn()), e & 2) {
         let n = t.$implicit;
-        Fn("z-index", n.depth), bo(), Fn("top", n.top + n.verticalOffset, "px")("left", n.left, "px")("transform", "rotate(" + n.rotation + "deg) scaleX(" + (n.isFlipped ? -1 : 1) + ")")("width", n.isGroudon ? 300 : 150, "px"), ba("shiny", n.isShiny)("groudon", n.isGroudon), Ia("src", n.isGroudon ? n.isShiny ? "/assets/shinygroudon.gif" : "/assets/groudon.gif" : n.isShiny ? "/assets/ShinyLitten.png" : "/assets/Litten.png", yd), bo(2), Fn("top", n.top + 40, "px")("left", n.left + 20, "px")("width", n.isGroudon ? 200 : 100, "px")
+        Fn("z-index", n.depth), bo(), Fn("top", n.top + n.verticalOffset, "px")("left", n.left, "px")("transform", "rotate(" + n.rotation + "deg) scaleX(" + (n.isFlipped ? -1 : 1) + ")")("width", n.isGroudon ? 300 : 150, "px"), ba("shiny", n.isShiny)("groudon", n.isGroudon), Ia("src", n.isGroudon ? n.isShiny ? "https://kl3xy.github.io/littenSwarm/assets/shinygroudon.gif" : "https://kl3xy.github.io/littenSwarm/assets/groudon.gif" : n.isShiny ? "https://kl3xy.github.io/littenSwarm/assets/ShinyLitten.png" : "https://kl3xy.github.io/littenSwarm/assets/Litten.png", yd), bo(2), Fn("top", n.top + 40, "px")("left", n.left + 20, "px")("width", n.isGroudon ? 200 : 100, "px")
     }
 }
 var ai = class e {
@@ -11483,7 +11483,7 @@ var ai = class e {
             [1, "litten-container", 3, "z-index"],
             [1, "litten-container"],
             ["alt", "Litten", 1, "litten", 3, "src"],
-            ["src", "/assets/littenShadow.png", "alt", "Shadow", 1, "shadow"]
+            ["src", "https://kl3xy.github.io/littenSwarm/assets/littenShadow.png", "alt", "Shadow", 1, "shadow"]
         ],
         template: function(n, r) {
             n & 1 && (Ln(0, "div", 1), cf(1, wE, 4, 21, "div", 2, DE), jn()), n & 2 && (bo(), uf(r.littens))
